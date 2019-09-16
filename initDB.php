@@ -10,9 +10,10 @@ $connection_string = "mysql:host=$host;dbname=$database;username=$username;passw
 
 try {
 	$db = new PDO($connection_string, $username, $password);
-	echo "Should have connected";
+	echo " - Database should have connected.";
 } catch (Exception $e) {
 	echo $e->getMessage();
-	exit("It didn't work");
+	exit(" - Database didn't connect.");
 }
 ?>
+
