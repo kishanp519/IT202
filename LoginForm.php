@@ -20,10 +20,12 @@ function confirmPassword() {
 <html>
 <head></head>
 <body>
-<?php getUsername();?>
-<?php getPassword();?>
-<?php confirmPassword();?>
-<form mode="post" action ="LoginForm.php">
+<?php
+getUsername();
+getPassword();
+confirmPassword(); 
+?>
+<form method="post" action ="LoginForm.php">
 Username: <input name="username" type="text" placeholder="Enter your username"/>
 Password: <input name="password" type="password" placeholder="Enter your password"/>
 Confirm Password: <input name="confirmPassword" type ="password" placeholder="Please re-enter your password"/>
