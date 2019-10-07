@@ -1,4 +1,3 @@
-
 <html>
 <head>
 	<script>
@@ -22,15 +21,19 @@
 	myParagraph.innerText = number1 + " + " + number2 + " = ";
 	myParagraph.innerText += number1 + number2;
 	console.log(myParagraph);
+
+	let myDiv = document.createElement('div');
+        let text = document.createTextNode("I think it works");
+	myDiv.appendChild(text);
+	
+//	let text = document.createTextNode("Created by JS");
+//	myDiv.appendChild(text);
+
+	document.body.appendChild(myDiv);
 	}	
 	</script>
 </head>
 <body onload="mySamples();">
 	<p id="myPara">Just showing that we loaded something...</p>
-	
-	<div>
-	<p id="elementAdded">New Element Added.</p>
-	</div>
 </body>
 </html>
-<?php
