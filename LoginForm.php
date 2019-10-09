@@ -28,8 +28,8 @@ confirmPassword();
 <form method="post" action ="LoginForm.php">
 Username: <input name="username" type="text" placeholder="Enter your username"/>
 Password: <input name="password" type="password" placeholder="Enter your password"/>
-Confirm Password: <input name="confirmPassword" type ="password" placeholder="Please re-enter your password"/>
-<input type="submit" value="Submit Login Information"/>
+Confirm Password: <input name="confirmPassword" type ="password" placeholder="Re-enter your password"/>
+<input type="submit" value="Submit"/>
 </form>
 </body>
 </html>
