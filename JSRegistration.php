@@ -12,16 +12,16 @@ function myValidation(inputEle, checkValue) {
 			if (value == "" || !value.includes("@") || !value.includes(".")) {
 				vele.document.createElement("span");
 				vele.id = vid;
+				vele.innerText = name + " has an invalid email value.";
 				document.body.appendChild(vele);
 			}
-			vele.innerText = name + " has an invalid email value.";
 		}
 		if (name == "confirmemail" && value != checkValue.value) {
 			vele.document.createElement("span");
                         vele.id = vid;
+			vele.innerText = name + " has an invalid email value.";
                         document.body.appendChild(vele);	
 		}
-                vele.innerText = name + " has an invalid email value.";
 	}
 
 	if (inputEle.type == "password") {
@@ -29,9 +29,9 @@ function myValidation(inputEle, checkValue) {
 			if (value == "") {
 				vele.document.createElement("span");
 				vele.id = vid;
+				vele.innterText = name + " has an invalid password value.";
 				document.body.appendChild(vele);
-			}
-			vele.innterText = name + " has an invalid password value.";			
+			}		
 		}	 
 		if (name == "passwordconfirm" && value != checkValue.value) {
                         vele.document.createElement("span");
@@ -45,9 +45,9 @@ function myValidation(inputEle, checkValue) {
 			if (value == "") {
 				vele.document.createElement("span");
 				vele.id = vid;
+				vele.innerText = name + " has an invalid username value."
 				document.body.appendChild(vele);
 			}
-			vele.innerText = name + " has an invalid username value."
 		}
 	}
 
