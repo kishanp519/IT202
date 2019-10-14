@@ -51,14 +51,12 @@ function validate(){
 		succeeded = false;
 	}
 	
-	var dv = document.getElementById("accounts");
-	var value = dv.options[dv.selectedIndex].text;
+	var dv = document.getElementById("validation.accounts");
+	var sel = form.accounts;
 
-	alert(value);	
-
-	if (value == "Select One") {
+	if (sel.selectedIndex == 0) {
 		dv.style.display = "block";
-		dv.innerText("Please select a valid dropdown option");
+		dv.innerText = "Please select a valid dropdown option";
 		succeeded = false;
 	}
 
@@ -91,6 +89,7 @@ input { border: 1px solid black; }
 	<option value="Rewards">Rewards</option>
 </select>
 <span id="validation.accounts" style="display:none;"></span>
+
 <input type="submit" value="Submit"/>
 </form>
 </div>
