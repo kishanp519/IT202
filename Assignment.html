@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+	function queryParam(){
+		var params = new URLSearchParams(location.search);
+		if(params.has('page')){
+			var page = params.get('page');
+			var ele = document.getElementById(page);
+			if(ele){
+				let home = document.getElementById('home');
+				let about = document.getElementById('about');
+				home.style.display="none";
+				about.style.display = "none";
+				ele.style.display = "block";
+			}
+		}
+		else{
+			let home = document.getElementById('home');
+			home.style.display = "block";
+		}
+	}
+</script>
+</head>
+<body onload="queryParam();">
+	<header>
+		<nav>
+		<ul>
+			<li><a href="#home"> Home </a></li>
+			<li><a href=#about"> About </a></li>
+		</ul>
+		</nav>
+	</header>
+	<div id="home">
+		This is this home page!
+	</div>
+	<div id="about">
+		<center>
+		<h1> About Page </h1>
+		<p> This paragraph would consist of the information about how to register your pharmacy into the Patient Management application. Along with this, it could give instructions on how to proceed to add medication information. </p>
+		<small> This could contain smaller information that is not very important for the user to read all the time. </small>
+		
+		</hr>
+
+		<title> Medication Names </title>
+		<ol>
+			<li> Medication Name #1</li>
+			<li> Medication Name #2</li>
+			<li> Medication Name #3</li>
+			<li> Medication Name #4</li>
+		</ol>
+		
+		
+		</center>
+	</div>
+	<footer></footer>
+</body>
+</html>
