@@ -32,7 +32,7 @@ error_reporting(E_ALL);
 					echo "Welcome, " . $results["username"] . " to your customized Pharmacy Management Panel.";
 					echo "Your current role is " . $results["role"] . ".";
 					echo "[" . $results["id"] . "]";
-					header("Location: homepage.html");
+					header("Location: home.html");
 				} else {
 					echo "You have entered in invalid password.";
 				}
