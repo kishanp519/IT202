@@ -49,8 +49,7 @@ function setRole($selectedUser, $selectedRole) {
         $result      = $stmt->execute(array(
             ":role" => $selectedRole
         ));
-    }
-    catch (Exception $e) {
+    } catch (Exception $e) {
         echo $e->getMessage();
     }
 }
@@ -67,8 +66,7 @@ function createPatient($first, $last, $age, $pharmacy) {
             ":age" => $age,
             ":pharmacy" => $pharmacy
         ));
-    }
-    catch (Exception $e) {
+    } catch (Exception $e) {
         echo $e->getMessage();
     }
 }
@@ -88,8 +86,7 @@ function getPatientID($first, $last, $age, $pharmacy) {
         $items       = $stmt->fetchAll();
         return $items[0];
         
-    }
-    catch (Exception $e) {
+    } catch (Exception $e) {
         echo $e->getMessage();
     }
     return -1;
@@ -103,12 +100,10 @@ function createMedication($name, $strength, $daySupply) {
         $stmt        = $db->prepare("INSERT into `PharmacyMedicationData` (`name`, `strength`, `daySupply`) VALUES(:name, :strength, :daySupply)");
         $result      = $stmt->execute(array(
             ":name" => $name,
-            ":last" => $last,
             ":strength" => $strength,
             ":daySupply" => $daySupply
         ));
-    }
-    catch (Exception $e) {
+    } catch (Exception $e) {
         echo $e->getMessage();
     }
 }
@@ -127,8 +122,7 @@ function getMedicationID($name, $strength, $daySupply) {
         $items       = $stmt->fetchAll();
         return $items[0];
         
-    }
-    catch (Exception $e) {
+    } catch (Exception $e) {
         echo $e->getMessage();
     }
     return -1;
@@ -146,8 +140,7 @@ function createPrescription($patientID, $medicationID, $instructions) {
             ":medicationID" => $medicationID,
             ":instructions" => $instructions
         ));
-    }
-    catch (Exception $e) {
+    } catch (Exception $e) {
         echo $e->getMessage();
     }
 }
@@ -158,11 +151,9 @@ function getPrescriptionIDs($patientID) {
         $conn_string = "mysql:host=$host;dbname=$database;charset=utf8mb4";
         $db          = new PDO($conn_string, $username, $password);
         $stmt        = $db->prepare("SELECT `id` FROM `PharmacyPrescriptionData` WHERE `patientID` = :patientID");
-        return $stmt->fetchAll();
-        
-        
-    }
-    catch (Exception $e) {
+        return $stmt->fetchAll();        
+      
+    } catch (Exception $e) {
         echo $e->getMessage();
     }
 }

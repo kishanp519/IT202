@@ -3,7 +3,6 @@ session_start();
 ini_set('display_errors',1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
 function getPharmacyUsers($pharmacy) {
 	require("config.php");
 	$conn_string = "mysql:host=$host;dbname=$database;charset=utf8mb4";
@@ -75,7 +74,6 @@ $items = getPharmacyUsers(get_pharmacy());
 	<option value="PHARMACIST">PHARMACIST</option>
 	<option value="TECHNICIAN">TECHNICIAN</option>
 </select>
-</section>
 
 <input type="submit" value="Execute"/>
 
@@ -87,13 +85,36 @@ if (isset($_POST['selectedUser']) && isset($_POST['selectedRole'])) {
 		setRole($selectedUser, $selectedRole);
 		echo "You have set " . $selectedUser . "'s role to " . $selectedRole . ".";
      	} else {
-        	echo "You are not allowed to perform this function without ADMIN role";
+        	echo "You are not allowed to perform this function without ADMIN role.";
      }
 } 
-
 ?>
 <b> <hr> </b>
 </form>
+</section>
+
+<section>
+<center> <font color="black"> <b> Medication Panel </b> </font> </center>
+<font color="black"> <b> New Medication: </b> </font>
+<br style = line-height:100px;>
+
+<form method="post">
+	Name:<input name="name" type="text" placeholder="Enter name"/>
+	Strength:<input name="strength" type="text" placeholder="Enter strength"/>
+	Day Supply:<input name="daySupply" type ="number" placeholder="Enter day supply"/>
+	<input type="submit" value="Execute"/>
+</form>
+<?php
+if (isset($_POST['name']) && isset($_POST['strength']) && isset($_POST['daySupply'])) {
+        $name = $_POST['name'];
+	$strength = $_POST['strength'];
+	$daySupply = $_POST['daySupply'];
+	createMedication($name, $strength, $daySupply);
+	echo "You have created a new medication with the inputted fields.";
+} 
+?>
+<b> <hr> </b>
+</section>
 
 </body>
 </html>
