@@ -201,6 +201,7 @@ Name:<input name="instructions" type="text" placeholder="Enter instructions"/>
 if (isset($_POST['patientID']) && isset($_POST['medicationID']) && isset($_POST['instructions'])) {
         $patientID = $_POST['patientID'];
 	$medicationID = $_POST['medicationID'];
+	$instructions = $_POST['instructions'];
 	createPrescription($patientID, $medicationID, $instructions);
 	echo "You have created a prescription for the patient with the provided medication.";
 } 
