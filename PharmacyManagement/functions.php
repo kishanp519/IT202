@@ -136,7 +136,6 @@ function createPrescription($patientID, $medicationID, $instructions) {
         $stmt        = $db->prepare("INSERT into `PharmacyPrescriptionData` (`patientID`, `medicationID`, `instructions`) VALUES(:patientID, :medicationID, :instructions)");
         $result      = $stmt->execute(array(
             ":patientID" => $patientID,
-            ":last" => $last,
             ":medicationID" => $medicationID,
             ":instructions" => $instructions
         ));

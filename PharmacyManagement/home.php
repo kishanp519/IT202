@@ -18,7 +18,7 @@ function getPharmacyPatients($pharmacy) {
 	require("config.php");
 	$conn_string = "mysql:host=$host;dbname=$database;charset=utf8mb4";
 	$db = new PDO($conn_string, $username, $password);
-	$query = "SELECT name from PharmacyPatientData WHERE pharmacy=:pharmacy";
+	$query = "SELECT * from PharmacyPatientData WHERE pharmacy=:pharmacy";
 	$stmt = $db->prepare($query);
 	$stmt->bindValue(":pharmacy", $pharmacy);
 	$r = $stmt->execute();
@@ -29,7 +29,7 @@ function getMedications(){
 	require("config.php");
 	$conn_string = "mysql:host=$host;dbname=$database;charset=utf8mb4";
 	$db = new PDO($conn_string, $username, $password);
-	$query = "SELECT DISTINCT name, strength, daySupply from PharmacyMedicationData";
+	$query = "SELECT * from PharmacyMedicationData";
 	$stmt = $db->prepare($query);
 	$r = $stmt->execute();
 	return $stmt->fetchAll();
@@ -185,9 +185,9 @@ $medications = getMedications();
 <font color="black"> Choose a Medication: </font>
 
 <select name="medicationID">
-<?php foreach($medication as $index=>$row):?>
+<?php foreach($medications as $index=>$row):?>
 	<option value="<?php echo $row['id'];?>">
-		<?php echo "Name: " . $row['name'] . " Strength: " . $row['strength'] . ", Day Supply: " . $row['daySupply'];?>
+		<?php echo "Name: " . $row['name'] . ", Strength: " . $row['strength'] . ", Day Supply: " . $row['daySupply'];?>
 	</option>
 <?php endforeach;?>
 </select>
@@ -206,6 +206,7 @@ if (isset($_POST['patientID']) && isset($_POST['medicationID']) && isset($_POST[
 } 
 ?>
 </section>	
+<b> <hr> </b>
 
 </body>
 </html>
