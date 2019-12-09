@@ -71,20 +71,17 @@ function createPatient($first, $last, $age, $pharmacy) {
     }
 }
 
-function getPatientID($first, $last, $age, $pharmacy) {
+function getPatient($id) {
     try {
         require("config.php");
         $conn_string = "mysql:host=$host;dbname=$database;charset=utf8mb4";
         $db          = new PDO($conn_string, $username, $password);
-        $stmt        = $db->prepare("SELECT `id` FROM `PharmacyPatientData` WHERE `firstName` = :first, `lastName` = :last, `age` = :age, `pharmacy` = :pharmacy");
+        $stmt        = $db->prepare("SELECT * FROM `PharmacyPatientData` WHERE `id` = :id");
         $result      = $stmt->execute(array(
-            ":first" => $first,
-            ":last" => $last,
-            ":age" => $age,
-            ":pharmacy" => $pharmacy
+            ":id" => $id
         ));
-        $items       = $stmt->fetchAll();
-        return $items[0];
+        
+	return $stmt->fetchAll();
         
     } catch (Exception $e) {
         echo $e->getMessage();
