@@ -81,7 +81,7 @@ function getPatient($id) {
             ":id" => $id
         ));
         
-	return $stmt->fetchAll();
+	return $stmt->fetch();
         
     } catch (Exception $e) {
         echo $e->getMessage();
@@ -105,7 +105,7 @@ function createMedication($name, $strength, $daySupply) {
     }
 }
 
-function getMedicationID($id) {
+function getMedication($id) {
     try {
         require("config.php");
         $conn_string = "mysql:host=$host;dbname=$database;charset=utf8mb4";
@@ -115,7 +115,7 @@ function getMedicationID($id) {
             ":id" => $id,
         ));
 
-        return $stmt->fetchAll();
+        return $stmt->fetch();
         
     } catch (Exception $e) {
         echo $e->getMessage();
@@ -139,17 +139,30 @@ function createPrescription($patientID, $medicationID, $instructions) {
     }
 }
 
-function getPrescriptions($pharmacy) {
+function printPrescriptions($pharmacy) {
     try {
         require("config.php");
         $conn_string = "mysql:host=$host;dbname=$database;charset=utf8mb4";
         $db          = new PDO($conn_string, $username, $password);
         $stmt        = $db->prepare("SELECT * FROM `PharmacyPrescriptionData`");
+	$stmt->execute();
         $result = $stmt->fetchAll();
-	$patientID = $index['patientID'];
-	$medicationID = $index['medicationID'];
 
-	foreach($result as $index=>$row):
+//	echo var_export($stmt->errorInfo());
+//	echo var_export($result);
+	
+	foreach($result as $index=>$row) {
+ 		$patientID = $row['patientID'];
+		$medicationID = $row['medicationID'];
+		$patient = getPatient($patientID);
+		$medication = getMedication($medicationID);
+		
+		if ($patient['pharmacy'] == $pharmacy) {
+			echo "Name: " . $patient['firstName'] . " " . $patient['lastName'] . ", Age: " . $patient['age'] . " <br>";
+			echo "Medication Name: " . $medication['name'] . ", Strength: " . $medication['strength'] . ", Day Supply: " . $medication['daySupply'] . "<br>";
+			echo "Instructions: " . $row['instructions'] . "<br> <br>";
+		}
+	}
       
     } catch (Exception $e) {
         echo $e->getMessage();

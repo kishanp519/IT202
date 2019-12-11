@@ -194,7 +194,7 @@ $medications = getMedications();
 
 <br style = line-height:100px;>
 <font color="black"> Write Instructions: </font>
-Name:<input name="instructions" type="text" placeholder="Enter instructions"/>
+<input name="instructions" type="text" placeholder="Enter instructions"/>
 <input type="submit" value="Execute"/>
 </form>
 <?php
@@ -212,15 +212,9 @@ if (isset($_POST['patientID']) && isset($_POST['medicationID']) && isset($_POST[
 
 <section>
 <center> <font color="black"> <b> Active Prescriptions Panel </b> </font> </center>
-<br style = line-height:100px;>
 
 <?php
-$prescriptions = getPrescriptions();                                                                                                                                                    
-foreach($prescriptions as $index=>$row) {
-	$patient = getPatient($row['patientID']);
-	$medication = getMedication($row['medicationID']);
-	echo "Name: " . $patient['firstName'] . " " . $patient['lastName'] . " Age: " . $patient['age'] . "Med Name: " . $medication['name'];
-}
+printPrescriptions(get_pharmacy());
 ?>
 </section>
 
