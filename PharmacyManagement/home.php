@@ -25,7 +25,7 @@ function getPharmacyPatients($pharmacy) {
 	return $stmt->fetchAll();
 }
 
-function getMedications(){
+function getMedications() {
 	require("config.php");
 	$conn_string = "mysql:host=$host;dbname=$database;charset=utf8mb4";
 	$db = new PDO($conn_string, $username, $password);
@@ -208,6 +208,24 @@ if (isset($_POST['patientID']) && isset($_POST['medicationID']) && isset($_POST[
 ?>
 </section>	
 <b> <hr> </b>
+
+
+<section>
+<center> <font color="black"> <b> Active Prescriptions Panel </b> </font> </center>
+<br style = line-height:100px;>
+
+<?php
+$prescriptions = getPrescriptions();                                                                                                                                                    
+foreach($prescriptions as $index=>$row) {
+	$patient = getPatient($row['patientID']);
+	$medication = getMedication($row['medicationID']);
+	echo "Name: " . $patient['firstName'] . " " . $patient['lastName'] . " Age: " . $patient['age'] . "Med Name: " . $medication['name'];
+}
+?>
+</section>
+
+
+
 
 </body>
 </html>

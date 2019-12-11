@@ -105,19 +105,17 @@ function createMedication($name, $strength, $daySupply) {
     }
 }
 
-function getMedicationID($name, $strength, $daySupply) {
+function getMedicationID($id) {
     try {
         require("config.php");
         $conn_string = "mysql:host=$host;dbname=$database;charset=utf8mb4";
         $db          = new PDO($conn_string, $username, $password);
-        $stmt        = $db->prepare("SELECT `id` FROM `PharmacyMedicationData` WHERE `name` = :name, `strength` = :strength, `daySupply` = :daySupply");
+        $stmt        = $db->prepare("SELECT * FROM `PharmacyMedicationData` WHERE `id` = :id");
         $result      = $stmt->execute(array(
-            ":name" => $name,
-            ":strength" => $strength,
-            ":daySupply" => $daySupply
+            ":id" => $id,
         ));
-        $items       = $stmt->fetchAll();
-        return $items[0];
+
+        return $stmt->fetchAll();
         
     } catch (Exception $e) {
         echo $e->getMessage();
@@ -141,13 +139,17 @@ function createPrescription($patientID, $medicationID, $instructions) {
     }
 }
 
-function getPrescriptionIDs($patientID) {
+function getPrescriptions($pharmacy) {
     try {
         require("config.php");
         $conn_string = "mysql:host=$host;dbname=$database;charset=utf8mb4";
         $db          = new PDO($conn_string, $username, $password);
-        $stmt        = $db->prepare("SELECT `id` FROM `PharmacyPrescriptionData` WHERE `patientID` = :patientID");
-        return $stmt->fetchAll();        
+        $stmt        = $db->prepare("SELECT * FROM `PharmacyPrescriptionData`");
+        $result = $stmt->fetchAll();
+	$patientID = $index['patientID'];
+	$medicationID = $index['medicationID'];
+
+	foreach($result as $index=>$row):
       
     } catch (Exception $e) {
         echo $e->getMessage();
