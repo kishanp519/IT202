@@ -49,10 +49,8 @@ function checkPasswords(form){
 					":pharmacy"=>$pharmacy
 				)
 			);
-			print_r($stmt->errorInfo());
-			
-			echo var_export($result, true);
-			echo "You have successfully registered under the username '" . $username . "' under the pharmacy " . $pharmacy . ".";
+			print_r($stmt->errorInfo());	
+			echo "You have successfully registered under the username '" . $user . "' under the pharmacy " . $pharmacy . ".";
 		}
 		catch(Exception $e){
 			echo $e->getMessage();

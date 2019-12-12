@@ -40,15 +40,16 @@ function isAdmin() {
     }
 }
 
-function setRole($selectedUser, $selectedRole) {
-    try {
+function setRole($selectedUser, $selectedRole) {  
+  try {
         require("config.php");
         $conn_string = "mysql:host=$host;dbname=$database;charset=utf8mb4";
         $db          = new PDO($conn_string, $username, $password);
-        $stmt        = $db->prepare("UPDATE `PharmacyUserData` SET `role` = :role WHERE `username` = $selectedUser");
+        $stmt        = $db->prepare("UPDATE `PharmacyUserData` SET `role` = :role WHERE `username` = '" . $selectedUser . "'");
         $result      = $stmt->execute(array(
             ":role" => $selectedRole
         ));
+
     } catch (Exception $e) {
         echo $e->getMessage();
     }
